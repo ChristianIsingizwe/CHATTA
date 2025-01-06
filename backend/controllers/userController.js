@@ -155,4 +155,8 @@ const findUser = async (req, res) => {
   }
 };
 
+const resetPassword = async ()=>{
+    
+}
+
 export { registerUser, signInUser, findUser, findUsers };
