@@ -27,6 +27,15 @@ const userSignInSchema = Joi.object({
     .required(),
 });
 
+const validatePagination = (req) => {
+  const schema = Joi.object({
+    page: Joi.number().integer().min(1).default(1),
+    limit: Joi.number().integer().min(1).max(10).default(10),
+  });
+
+  return schema.validate(req.query);
+};
+
 const registerUser = async (req, res) => {
   try {
     const { error, value } = userRegisterSchema.validate(req.body, {
@@ -98,10 +107,52 @@ const signInUser = async (req, res) => {
   }
 };
 
-const findUsers = async (req, res)=>{
+const findUsers = async (req, res) => {
+  try {
+    const { error, value } = validatePagination(req);
 
-}
+    if (error) {
+      return res
+        .status(400)
+        .json({ message: "Invalid query parameters.", error: error.details });
+    }
 
-const findUser = async (req, res)=>{
-    
-}
+    const { page, limit } = value;
+    const skip = (page - 1) * limit;
+
+    const users = await User.find()
+      .skip(skip)
+      .limit(limit)
+      .select("name email");
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("An error occurred: ", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+const findUser = async (req, res) => {
+  try {
+    const userID = req.params.id;
+
+    if (!userID) {
+      return res.status(400).json({ message: "UserID not found" });
+    }
+
+    const user = User.findById(userID);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    res.status(200).json({
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.error("An error occurred: ", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export { registerUser, signInUser, findUser, findUsers };
