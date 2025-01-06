@@ -27,15 +27,11 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ errors: errorMessages });
     }
 
-    const { name, email, password } = _.pick(req.body, [
-      "name",
-      "email",
-      "password",
-    ]);
+    const { name, email, password } = value;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      res.status(400).json({ messages: "User already exist" });
+      return res.status(400).json({ messages: "User already exist" });
     }
     const hashedPassword = hashPassword(password);
     const newUser = new User({
@@ -58,3 +54,7 @@ const registerUser = async (req, res) => {
     res.status(500).json({ message: "Internal server error." });
   }
 };
+
+// const signInUser = async (req, res)=>{
+
+// }
