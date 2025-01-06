@@ -1,10 +1,10 @@
 import Joi from "joi";
-import User from "../models/userModel";
-import { hashPassword, verifyPassword } from "../utils/passwordHelper";
+import User from "../models/userModel.js";
+import { hashPassword, verifyPassword } from "../utils/passwordHelper.js";
 import {
   generateAccessToken,
   generateRefreshToken,
-} from "../utils/generateTokens";
+} from "../utils/generateTokens.js";
 
 const userRegisterSchema = Joi.object({
   name: Joi.string().min(3).max(100).required(),
@@ -156,7 +156,7 @@ const findUser = async (req, res) => {
 };
 
 const resetPassword = async ()=>{
-    
+
 }
 
 export { registerUser, signInUser, findUser, findUsers };
