@@ -1,6 +1,6 @@
 import User from "../models/userModel";
 
-const findUsers = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
     const { error, value } = validatePagination(req);
 
@@ -16,7 +16,7 @@ const findUsers = async (req, res) => {
     const users = await User.find()
       .skip(skip)
       .limit(limit)
-      .select("name email");
+      .select("name email profilePic");
     res.status(200).json(users);
   } catch (error) {
     console.error("An error occurred: ", error);
@@ -24,7 +24,7 @@ const findUsers = async (req, res) => {
   }
 };
 
-const findUser = async (req, res) => {
+const getUser = async (req, res) => {
   try {
     const userID = req.params.id;
 
@@ -48,4 +48,4 @@ const findUser = async (req, res) => {
   }
 };
 
-export { findUser, findUsers };
+export { getUser, getUsers };
