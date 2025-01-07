@@ -1,9 +1,10 @@
-import express from 'express'
-import { sendMessage } from '../controllers/messageController'
+import express from "express";
+import { sendMessage } from "../controllers/messageController";
+import authorize from "../middlewares/authMiddleware";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/send/:id", sendMessage)
-router.get()
+router.get("/:id", authorize, getMessages)
+router.post("/send/:id", authorize, sendMessage);
 
-export default router
+export default router;
