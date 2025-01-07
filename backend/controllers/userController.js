@@ -15,6 +15,12 @@ const userRegisterSchema = Joi.object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     )
     .required(),
+  confirmPassword: Joi.string()
+    .min(8)
+    .pattern(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    )
+    .required(),
 });
 
 const userSignInSchema = Joi.object({
@@ -46,7 +52,10 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ errors: errorMessages });
     }
 
-    const { name, email, password } = value;
+    const { name, email, password, confirmPassword } = value;
+    if (password !== confirmPassword){
+      return res.status(400).json({messages: "Passwords don't match"})
+    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -155,8 +164,6 @@ const findUser = async (req, res) => {
   }
 };
 
-const resetPassword = async ()=>{
-
-}
+const resetPassword = async () => {};
 
 export { registerUser, signInUser, findUser, findUsers };

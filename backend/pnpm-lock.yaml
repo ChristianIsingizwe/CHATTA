@@ -29,6 +29,9 @@ importers:
       mongoose:
         specifier: ^8.9.3
         version: 8.9.3
+      mongoose-unique-validator:
+        specifier: ^4.0.1
+        version: 4.0.1(mongoose@8.9.3)
 
 packages:
 
@@ -326,6 +329,12 @@ packages:
     resolution: {integrity: sha512-C3iHfuGUXK2u8/ipq9LfjFfXFxAZMQJJq7vLS45r3D9Y2xQ/m4S8zaR4zMLFWh9AsNPXmcFfUDhTEO8UIC/V6Q==}
     engines: {node: '>=12.0.0'}
 
+  lodash.foreach@4.5.0:
+    resolution: {integrity: sha512-aEXTF4d+m05rVOAUG3z4vZZ4xVexLKZGF0lIxuHZ1Hplpk/3B6Z1+/ICICYRLm7c41Z2xiejbkCkJoTlypoXhQ==}
+
+  lodash.get@4.4.2:
+    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+
   lodash.includes@4.3.0:
     resolution: {integrity: sha512-W3Bx6mdkRTGtlJISOvVD/lbqjTlPPUDTMnlXZFnVwi9NKJ6tiAk6LVdlhZMm17VZisqhKcgzpO5Wz91PCt5b0w==}
 
@@ -343,6 +352,9 @@ packages:
 
   lodash.isstring@4.0.1:
     resolution: {integrity: sha512-0wJxfxH1wgO3GrbuP+dTTk7op+6L41QCXbGINEmD+ny/G/eCqGzxyCsh7159S+mgDDcoarnBw6PC1PS5+wUGgw==}
+
+  lodash.merge@4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
   lodash.once@4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}
@@ -434,6 +446,11 @@ packages:
         optional: true
       socks:
         optional: true
+
+  mongoose-unique-validator@4.0.1:
+    resolution: {integrity: sha512-kd080ytRa6SmTOJlQPlAnsJHz7eH/b27dMHsN3WO2PeJc1lkcZ+ns6dLvcsu7Kx/f4SQEXu9JfL8kFkr4aFqFQ==}
+    peerDependencies:
+      mongoose: ^7.0.0
 
   mongoose@8.9.3:
     resolution: {integrity: sha512-G50GNPdMqhoiRAJ/24GYAzg13yxXDD3FOOFeYiFwtHmHpAJem3hxbYIxAhLJGWbYEiUZL0qFMu2LXYkgGAmo+Q==}
@@ -1014,6 +1031,10 @@ snapshots:
 
   kareem@2.6.3: {}
 
+  lodash.foreach@4.5.0: {}
+
+  lodash.get@4.4.2: {}
+
   lodash.includes@4.3.0: {}
 
   lodash.isboolean@3.0.3: {}
@@ -1025,6 +1046,8 @@ snapshots:
   lodash.isplainobject@4.0.6: {}
 
   lodash.isstring@4.0.1: {}
+
+  lodash.merge@4.6.2: {}
 
   lodash.once@4.1.1: {}
 
@@ -1079,6 +1102,13 @@ snapshots:
       '@mongodb-js/saslprep': 1.1.9
       bson: 6.10.1
       mongodb-connection-string-url: 3.0.1
+
+  mongoose-unique-validator@4.0.1(mongoose@8.9.3):
+    dependencies:
+      lodash.foreach: 4.5.0
+      lodash.get: 4.4.2
+      lodash.merge: 4.6.2
+      mongoose: 8.9.3
 
   mongoose@8.9.3:
     dependencies:

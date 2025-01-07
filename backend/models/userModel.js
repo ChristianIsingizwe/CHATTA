@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import uniqueValidator from "mongoose-unique-validator";
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,9 +19,9 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
-    profilePic:{
+    profilePic: {
       type: String,
-      default:""
+      default: " https://www.gravatar.com/avatar/?d=mp",
     },
     tokenVersion: {
       type: Number,
@@ -30,6 +31,11 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true, collection: "users" }
 );
+
+userSchema.plugin(uniqueValidator, { message: "{PATH} must be unique" });
+
+userSchema.index({ email: 1 });
+userSchema.index({ name: 1 });
 
 const User = mongoose.model("User", userSchema);
 
