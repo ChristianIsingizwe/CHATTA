@@ -1,5 +1,5 @@
 import express from "express";
-import { sendMessage } from "../controllers/messageController";
+import { getMessages, sendMessage } from "../controllers/messageController";
 import authorize from "../middlewares/authMiddleware";
 
 const router = express.Router();
