@@ -1,4 +1,4 @@
-import Sidebar from "../../components/sidebar/Sidebar";
+import Sidebar from "../../compo/sidebar/Sidebar";
 function Home() {
   return (
     <div className="flex sm:h-[450px] md:-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
