@@ -85,7 +85,7 @@ function Signup() {
           <Link
             className="text-sm hover:underline hover:text-blue-600 mt-4 inline-block"
             to={"/login"}
-          >
+          > 
             already have an account
           </Link>
 
