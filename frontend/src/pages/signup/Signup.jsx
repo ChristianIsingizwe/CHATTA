@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Signup() {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -50,12 +52,12 @@ function Signup() {
             />
           </div>
 
-          <a
+          <Link
             className="text-sm hover:underline hover:text-blue-600 mt-4 inline-block"
             href="#"
           >
             already have an account
-          </a>
+          </Link>
 
           <div></div>
         </form>
